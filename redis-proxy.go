@@ -1,7 +1,7 @@
 package main
 
 import (
-	"encoding/base64"
+	//"encoding/base64"
 	"encoding/json"
 	"fmt"
 	"github.com/garyburd/redigo/redis"
