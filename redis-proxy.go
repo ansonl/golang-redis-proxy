@@ -96,9 +96,11 @@ func getHandler(w http.ResponseWriter, r *http.Request) {
 	if len(r.Form["key"]) > 0 {
 		key = r.Form["key"][0]
 
-		status, data := performGet(key)
+		status, value := performGet(key)
 
+		/*
 		value := base64.StdEncoding.EncodeToString([]byte(data))
+		*/
 
 		fmt.Fprintf(w, createJSONOutput(status, value))
 
@@ -120,12 +122,13 @@ func setHandler(w http.ResponseWriter, r *http.Request) {
 		key = r.Form["key"][0]
 		value = r.Form["value"][0]
 
+		/*
 		decodedBytes, err := base64.StdEncoding.DecodeString(value)
 		if err != nil {
 			fmt.Println("Base64 decode error:", err)
 		}
-
 		value = string(decodedBytes)
+		*/
 
 		status := performSet(key, value)
 
@@ -137,9 +140,7 @@ func setHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func server(wg *sync.WaitGroup) {
-	//Called by stickify pusher client
 	http.HandleFunc("/set", setHandler)
-	//Called by stickify viewer client
 	http.HandleFunc("/get", getHandler)
 
 	http.HandleFunc("/uptime", uptimeHandler)
