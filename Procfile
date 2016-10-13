@@ -1,1 +1,1 @@
-web: mesh-notes-store
+web: redis-proxy
