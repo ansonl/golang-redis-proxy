@@ -1,1 +1,1 @@
-web: go_test
+web: redis-proxy
